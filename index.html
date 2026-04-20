@@ -3,50 +3,192 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>The Beauty Hub | Home</title>
+        <title>The Beauty Hub | Dashboard</title>
 
+        <!-- Favicon Placeholder -->
+        <link rel="icon" href="images/favicon.png" type="image/png">
+
+        <!-- Stylesheet -->
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <!-- Navigation -->
-        <header>
+        <!-- Glassmorphism Navigation -->
+        <nav class="navbar">
             <div class="logo">The Beauty Hub</div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">🏠 Home</a></li>
-                    <li><a href="#about">👥 About Us</a></li>
-                    <li><a href="#services">💼 Services</a></li>
-                    <li><a href="#prices">💲 Price List</a></li>
-                    <li><a href="#policy">⚙️ Booking Policy</a></li>
-                    <li><a href="#contact">📞 Contact Us</a></li>
-                </ul>
-            </nav>
-        </header>
+            <ul>
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+
+                <li>
+                    <a href="#about">About</a>
+                </li>
+
+                <li>
+                    <a href="#services">Services</a>
+                </li>
+
+                <li>
+                    <a href="#prices">Price List</a>
+                </li>
+
+                <li>
+                    <a href="#gallery">Gallery</a>
+                </li>
+
+                <li>
+                    <a href="#testimonials">Testimonials</a>
+                </li>
+
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+
+            </ul>
+            <button id="themeToggle" onclick="toggleTheme()">☀️ Light Mode</button>
+        </nav>
 
         <!-- Hero Section -->
-        <section class="hero" id="home">
-            <div class="hero-text">
-                <h1>Confidence, Style & Beauty for Everyone</h1>
-                <p>Makeup, Weaves, Installation, Sneakers & SSD Curls — trusted by women of all ages.</p>
-                <a href="https://wa.me/27684123632" class="btn">Book on WhatsApp</a>
+        <header id="home" class="hero">
+
+            <div class="hero-overlay">
+                <h1>Confidence, Style & Beauty</h1>
+                <p>Luxury salon experiences that make you shine.</p>
+                <a href="https://wa.me/27684123632" class="cta-btn">Book Now</a>
+            </div>
+
+            <!-- Hero Image Placeholder -->
+            <img src="images/hero-placeholder.jpg" alt="Salon Hero Image" class="hero-img">
+        </header>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2>About Us</h2>
+            <p>Founded in 2025 by Sihle Sawana, The Beauty Hub blends creativity and professionalism to deliver unforgettable salon experiences. Our mission is to empower confidence through beauty.</p>
+           
+            <!-- Founder Image Placeholder -->
+            <img src="images/founder-placeholder.jpg" alt="Founder Portrait" class="about-img">
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section">
+            <h2>Our Services</h2>
+            <div class="service-grid">
+
+                <div class="service-card">
+                    <img src="images/makeup-placeholder.jpg" alt="Makeup">
+                    <h3>Makeup</h3>
+                    <p>Bridal, glam & natural looks.</p>
+                </div>
+
+                <div class="service-card">
+                    <img src="images/weaves-placeholder.jpg" alt="Weaves">
+                    <h3>Weaves</h3>
+                    <p>Stylish, affordable options.</p>
+                </div>
+
+                <div class="service-card">
+                    <img src="images/installation-placeholder.jpg" alt="Installation">
+                    <h3>Installation</h3>
+                    <p>Professional wig installs.</p>
+                </div>
+
+                <div class="service-card">
+                    <img src="images/sneakers-placeholder.jpg" alt="Sneakers">
+                    <h3>Sneakers</h3>
+                    <p>Trendy footwear to complete your look.</p>
+                </div>
+
+                <div class="service-card">
+                    <img src="images/curls-placeholder.jpg" alt="SSD Curls">
+                    <h3>SSD Curls</h3>
+                    <p>Signature curls that stand out.</p>
+                </div>
+
             </div>
         </section>
 
-        <!-- Services Preview -->
-        <section class="services-preview" id="services">
-            <h2>Our Services</h2>
-            <div class="card-container">
-                <div class="card"><h3>Makeup</h3><p>Event & everyday glam looks.</p></div>
-                <div class="card"><h3>Weaves</h3><p>Stylish, affordable options for all hair types.</p></div>
-                <div class="card"><h3>Installation</h3><p>Professional wig installs for a flawless finish.</p></div>
-                <div class="card"><h3>Sneakers</h3><p>Trendy footwear to complete your look.</p></div>
-                <div class="card"><h3>SSD Curls</h3><p>Signature curls that stand out.</p></div>
+        <!-- Price List Section -->
+        <section id="prices" class="section">
+            <h2>Price List</h2>
+            <div class="price-grid">
+                <div class="price-card">
+                    <h3>5x5 SDD Donor</h3>
+                    <p>14 inch — R 2 060</p>
+                </div>
+
+                <div class="price-card">
+                    <h3>4x4 Curls</h3>
+                    <p>12 inch — R 950</p>
+                </div>
+
+                <div class="price-card">
+                    <h3>360 Wig Straight</h3>
+                    <p>20 inch — R 1 890</p>
+                </div>
+
+                <div class="price-card">
+                    <h3>13x4 DD Chocolate</h3>
+                    <p>18 inch — R 1 700</p>
+                </div>
+
+                <div class="price-card">
+                    <h3>Glueless Straight</h3>
+                    <p>16 inch — R 1 290</p>
+                </div>
+
             </div>
+            <p>
+                <em>Delivery takes 1–5 days. Add R50 for curly closure.</em>
+            </p>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section">
+            <h2>Gallery</h2>
+            <div class="gallery-grid">
+                <img src="images/gallery1-placeholder.jpg" alt="Gallery Image 1">
+                <img src="images/gallery2-placeholder.jpg" alt="Gallery Image 2">
+                <img src="images/gallery3-placeholder.jpg" alt="Gallery Image 3">
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="section">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonial-carousel">
+                <div class="testimonial">
+                    <p>"The Beauty Hub transformed my look — I felt like a queen!"</p>
+                    <span>- Client A</span>
+                </div>
+
+                <div class="testimonial">
+                    <p>"Professional, stylish, and affordable. Highly recommend!"</p>
+                    <span>- Client B</span>
+                </div>
+
+                <div class="testimonial">
+                    <p>"Best salon experience I’ve ever had."</p>
+                    <span>- Client C</span>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2>Contact Us</h2>
+            <p class="contact-info">WhatsApp: <a href="https://wa.me/27684123632">068 412 3632</a></p>
+            <p class="contact-info">Instagram: @thebeautyhub</p>
+            <p class="contact-info">Email: thebeautyhub@gmail.com</p>
         </section>
 
         <!-- Footer -->
         <footer>
             <p>© 2026 The Beauty Hub | Designed by De Bongz 🚀</p>
         </footer>
+
+        <!-- Scripts -->
+        <script src="script.js"></script>
     </body>
 </html>
