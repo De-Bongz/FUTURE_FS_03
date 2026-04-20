@@ -51,10 +51,16 @@ body.light-mode .cta-btn {
   z-index: 1000;
 }
 
+
+.logo img {
+  height: 120px;       /* keeps logo small */
+  width: auto;        /* maintains proportions */
+  display: block;
+}
+
 .navbar .logo {
-  font-weight: bold;
-  font-size: 20px;
-  color: #38bdf8;
+  display: flex;
+  align-items: center;
 }
 
 .navbar ul {
