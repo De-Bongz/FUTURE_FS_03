@@ -1,107 +1,168 @@
-/* Global Reset */
+/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Default: Dark Mode */
+/* ================= BODY ================= */
 body {
   font-family: 'Poppins', Arial, sans-serif;
   background: radial-gradient(circle at top right, #0f172a, #020617);
   color: #f1f5f9;
   line-height: 1.6;
-  transition: background 0.5s ease, color 0.5s ease;
+  transition: 0.5s;
 }
 
-/* Light Mode */
+/* LIGHT MODE */
 body.light-mode {
   background: #fdfdfd;
   color: #222;
 }
 
 body.light-mode .navbar {
-  background: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.95);
   backdrop-filter: blur(12px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .navbar ul li a {
+  color: gold ;
+}
+
+body.light-mode .navbar ul li a:hover{
+  color: #2563eb;
+}
+
+body.light-mode .menu-toggle{
+  color: #111;
 }
 
 body.light-mode .service-card,
-body.light-mode .price-card {
+body.light-mode .price-card,
+body.light-mode .testimonial {
   background: #f9fafb;
   color: #222;
-  border: 1px solid #e2e8f0;
 }
 
-body.light-mode .cta-btn {
-  background: linear-gradient(135deg, #f472b6, #facc15);
-  color: #222;
-}
-
-/* Navbar (Glassmorphism) */
+/* ================= NAVBAR ================= */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(30, 41, 59, 0.6);
+  background: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(12px);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 40px;
+  padding: 12px 25px;
   z-index: 1000;
+  transition: 0.3s;
+}
+
+.left{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Scroll effect */
+.navbar.scrolled {
+  background: rgba(2, 6, 23, 0.95);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Logo */
+.logo{
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 
 .logo img {
-  height: 120px;       /* keeps logo small */
-  width: auto;        /* maintains proportions */
-  display: block;
+  height: 80px;
+  width: auto;
+  object-fit: contain;
 }
 
-.navbar .logo {
-  display: flex;
-  align-items: center;
+.brand-name{
+  font-size: 18px;
+  font-weight: 600;
+  color: #38bdf8;
+  letter-spacing: 0.5px;
 }
 
+.logo:hover .brand-name{
+  color: gold;
+}
+/* Nav links */
 .navbar ul {
-  list-style: none;
   display: flex;
+  list-style: none;
   gap: 25px;
 }
 
+/* Links */
 .navbar ul li a {
+  position: relative;
   text-decoration: none;
-  color: inherit;
+  color: #e2e8f0;
   font-weight: 500;
-  transition: color 0.3s;
+  transition: 0.3s;
+}
+
+/* Hover underline */
+.navbar ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background: #38bdf8;
+  transition: 0.3s;
 }
 
 .navbar ul li a:hover {
   color: #38bdf8;
 }
 
-.navbar button {
-  background: #2563eb;
-  color: white;
+.navbar ul li a:hover::after {
+  width: 100%;
+}
+
+/* Active */
+.navbar ul li a.active {
+  color: #38bdf8;
+}
+
+/* Theme Button */
+#themeToggle {
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
   border: none;
+  color: white;
+  padding: 6px 12px;
   border-radius: 8px;
-  padding: 8px 14px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-.navbar button:hover {
-  background: #1d4ed8;
+/* Hamburger */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #fff;
 }
 
-/* Hero Section */
+/* ================= HERO ================= */
 .hero {
   position: relative;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  padding-top: 80px; /* prevents navbar overlap */
 }
 
 .hero-img {
@@ -114,190 +175,143 @@ body.light-mode .cta-btn {
 
 .hero-overlay {
   text-align: center;
-  color: white;
-  background: rgba(0,0,0,0.4);
-  padding: 30px;
-  border-radius: 12px;
-  animation: fadeIn 1.5s ease;
+  background: rgba(0,0,0,0.5);
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .hero-overlay h1 {
-  font-size: 3rem;
-  margin-bottom: 15px;
+  font-size: 2.5rem;
 }
 
 .hero-overlay p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
+  font-size: 1rem;
 }
 
+/* CTA Button */
 .cta-btn {
-  padding: 12px 20px;
-  border-radius: 10px;
+  padding: 10px 18px;
+  border-radius: 8px;
   background: linear-gradient(135deg, #2563eb, #38bdf8);
   color: white;
-  font-weight: bold;
   text-decoration: none;
-  transition: 0.3s;
 }
 
-.cta-btn:hover {
-  transform: scale(1.05);
-  background: linear-gradient(135deg, #1d4ed8, #2563eb);
-}
-
-/* Sections */
+/* ================= SECTIONS ================= */
 .section {
-  padding: 80px 20px;
-  max-width: 1200px;
+  padding: 70px 15px;
+  max-width: 1100px;
   margin: auto;
   text-align: center;
 }
 
 .section h2 {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: #38bdf8;
+  margin-bottom: 20px;
 }
 
 /* About */
 .about-img {
-  margin-top: 20px;
-  width: 200px;
+  margin-top: 15px;
+  width: 150px;
   border-radius: 50%;
-  box-shadow: 0 0 12px #2563eb;
 }
 
-/* Services Grid */
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-}
-
-.service-card {
-  background: #1e293b;
-  border-radius: 12px;
-  padding: 20px;
-  transition: 0.3s;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-}
-
-.service-card img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 12px;
-}
-
-.service-card h3 {
-  color: #38bdf8;
-  margin-bottom: 8px;
-}
-
-.service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 14px #38bdf8;
-}
-
-/* Price Grid */
-.price-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-}
-
-.price-card {
-  background: #0f172a;
-  border-radius: 12px;
-  padding: 20px;
-  transition: 0.3s;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-}
-
-.price-card h3 {
-  color: #facc15; /* gold accent */
-}
-
-.price-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 14px #facc15;
-}
-
-/* Gallery */
+/* ================= GRIDS ================= */
+.service-grid,
+.price-grid,
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
+  gap: 15px;
 }
 
+/* Cards */
+.service-card,
+.price-card,
+.testimonial {
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+/* Images */
+.service-card img,
 .gallery-grid img {
   width: 100%;
-  border-radius: 12px;
-  transition: 0.3s;
-  cursor: pointer;
-}
-
-.gallery-grid img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 12px #2563eb;
+  border-radius: 8px;
 }
 
 /* Testimonials */
 .testimonial-carousel {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 10px;
-}
-
-.testimonial {
-  flex: 0 0 300px;
-  background: #1e293b;
-  border-radius: 12px;
-  padding: 20px;
-  scroll-snap-align: start;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-}
-
-.testimonial p {
-  font-style: italic;
-  margin-bottom: 10px;
-}
-
-.testimonial span {
-  font-weight: bold;
-  color: #38bdf8;
 }
 
 /* Contact */
 .contact-info {
-  margin-bottom: 15px;
-  font-size: 16px;
-}
-
-.contact-info a {
-  color: #38bdf8;
-  text-decoration: none;
+  margin-bottom: 10px;
 }
 
 /* Footer */
 footer {
-  background: #020617;
-  color: #38bdf8;
   text-align: center;
-  padding: 20px;
-  text-shadow: 0 0 8px #2563eb;
+  padding: 15px;
+  background: #020617;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Mobile */
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
-  .hero-overlay h1 { font-size: 2rem; }
-  .navbar ul { display: none; }
+
+  .menu-toggle {
+    display: block;
+    color: inherit;
+  }
+
+  .brand-name{
+    font-size: 16px;
+  }
+
+  .logo img {
+    height: 55px;
+  }
+
+  .navbar ul {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 240px;
+    height: calc(100vh - 70px);
+    background: #020617;
+    flex-direction: column;
+    align-items: flex-start;
+    padding:  20px;
+    gap: 20px;
+    transition: 0.3s ease;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+  }
+
+  .navbar ul.active {
+    left: 0;
+  }
+
+  .navbar ul li{
+    width: 100%;
+  }
+
+  .navbar ul li a{
+    width: 100%;
+    display: block;
+    padding: 10px;
+  }
+
+  .hero-overlay h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-overlay p {
+    font-size: 0.9rem;
+  }
 }
