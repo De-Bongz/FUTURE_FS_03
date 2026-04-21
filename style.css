@@ -5,6 +5,21 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+.section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ================= BODY ================= */
 body {
   font-family: 'Poppins', Arial, sans-serif;
@@ -54,12 +69,49 @@ body.light-mode .hero-overlay h1{
   color: #111;
 }
 
-body.light-mode .service-card,
-body.light-mode .price-card,
-body.light-mode .testimonial {
-  background: #f9fafb;
+
+body.light-mode .service-card {
+  background: #ffffff;
   color: #222;
 }
+
+body.light-mode .price-card {
+  background: #ffffff;
+  color: #222;
+}
+
+body.light-mode .price-note {
+  color: #555;
+}
+
+body.light-mode .gallery-container img:hover {
+  box-shadow: 0 0 15px #2563eb;
+}
+
+body.light-mode .testimonial-card {
+  background: #ffffff;
+  color: #222;
+}
+
+body.light-mode .contact-form input,
+body.light-mode .contact-form textarea {
+  background: #f1f5f9;
+  color: #111;
+}
+
+body.light-mode .footer {
+  background: #f1f5f9;
+  color: #111;
+}
+
+body.light-mode .footer a {
+  color: #333;
+}
+
+body.light-mode .footer a:hover {
+  color: #2563eb;
+}
+
 
 /* ================= NAVBAR ================= */
 .navbar {
@@ -296,62 +348,317 @@ body.light-mode .testimonial {
   font-size: 1rem;
 }
 
-/*============  ================*/
-.section h2 {
-  margin-bottom: 20px;
-}
-
-/* About */
-.about-img {
-  margin-top: 15px;
-  width: 150px;
-  border-radius: 50%;
-}
-
-/* ================= GRIDS ================= */
-.service-grid,
-.price-grid,
-.gallery-grid {
+/* ================= SERVICES ================= */
+.services-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+/* Card */
+.service-card {
+  background: #1e293b;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Image */
+.service-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Text */
+.service-card h3 {
+  padding: 15px 15px 5px;
+  color: #38bdf8;
+}
+
+.service-card p {
+  padding: 0 15px 15px;
+  font-size: 0.95rem;
+}
+
+/* Hover effect */
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 20px #38bdf8;
+}
+
+
+
+/* ================= PRICES ================= */
+.prices-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+/* Card */
+.price-card {
+  background: #0f172a;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Title */
+.price-card h3 {
+  margin-bottom: 10px;
+  color: #facc15; /* gold */
+}
+
+/* Price */
+.price-card p {
+  font-size: 1rem;
+}
+
+/* Highlight price */
+.price-card strong {
+  font-size: 1.2rem;
+  color: #38bdf8;
+}
+
+/* Hover */
+.price-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px #facc15;
+}
+
+/* Note */
+.price-note {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+
+/* ================= GALLERY ================= */
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px;
 }
 
-/* Cards */
-.service-card,
-.price-card,
-.testimonial {
-  background: #1e293b;
-  padding: 15px;
-  border-radius: 10px;
+/* Images */
+.gallery-container img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
   transition: 0.3s;
 }
 
-/* Images */
-.service-card img,
-.gallery-grid img {
-  width: 100%;
-  border-radius: 8px;
+/* Hover effect */
+.gallery-container img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #38bdf8;
 }
 
-/* Testimonials */
-.testimonial-carousel {
+
+/* ================= TESTIMONIALS ================= */
+.testimonial-container {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   overflow-x: auto;
+  padding: 10px;
 }
 
-/* Contact */
-.contact-info {
+/* Card */
+.testimonial-card {
+  flex: 0 0 280px;
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Text */
+.testimonial-card p {
+  font-style: italic;
   margin-bottom: 10px;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 15px;
-  background: #020617;
+.testimonial-card h4 {
+  color: #38bdf8;
 }
+
+/* Hover */
+.testimonial-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #38bdf8;
+}
+
+/* Scroll smooth */
+.testimonial-container {
+  scroll-snap-type: x mandatory;
+}
+
+.testimonial-card {
+  scroll-snap-align: start;
+}
+
+
+/* ================= CONTACT ================= */
+.contact-container {
+  display: flex;
+  gap: 40px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Info */
+.contact-info {
+  flex: 1;
+  min-width: 250px;
+}
+
+.contact-info p {
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+.contact-info a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.popup-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+  display: none;
+  z-index: 2000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  animation: slideIn 0.4s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Form */
+.contact-form {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+/* Button */
+.contact-form button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  transform: scale(1.05);
+}
+
+
+/* ================= FOOTER ================= */
+.footer {
+  background: #020617;
+  color: #e2e8f0;
+  padding: 50px 20px 20px;
+}
+
+/* Layout */
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* Headings */
+.footer h3,
+.footer h4 {
+  color: #38bdf8;
+  margin-bottom: 10px;
+}
+
+/* Links */
+.footer a {
+  display: block;
+  color: #e2e8f0;
+  text-decoration: none;
+  margin-bottom: 8px;
+  transition: 0.3s;
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  background: #25D366;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: 0.3s;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+.footer a:hover {
+  color: #38bdf8;
+}
+
+/* Bottom */
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.9rem;
+}
+
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
@@ -418,5 +725,25 @@ footer {
 
   .about-image img{
     width: 200px;
+  }
+
+  .service-card img {
+    height: 150px;
+  }
+
+  .price-card {
+    padding: 15px;
+  }
+
+  .gallery-container img {
+    height: 160px;
+  }
+
+  .testimonial-card {
+    flex: 0 0 85%;
+  }
+
+  .contact-container {
+    flex-direction: column;
   }
 }

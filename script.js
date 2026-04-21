@@ -1,31 +1,18 @@
-// 🌙 Toggle Dark/Light Mode
+"use strict";
+
+/* ================= THEME TOGGLE ================= */
 function toggleTheme() {
     const body = document.body;
     const button = document.getElementById("themeToggle");
 
     body.classList.toggle("light-mode");
 
-    // Change button text/icon
-    if (body.classList.contains("light-mode")) {
-        button.textContent = "🌙 Dark Mode";
-    } else {
-        button.textContent = "☀️ Light Mode";
-    }
+    button.textContent = body.classList.contains("light-mode")
+        ? "🌙 Dark Mode"
+        : "☀️ Light Mode";
 }
 
-// 🔗 Smooth Scrolling for Navbar Links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function(e) {
-        e.preventDefault();
-
-        const target = document.querySelector(this.getAttribute("href"));
-        target.scrollIntoView({
-            behavior: "smooth"
-        });
-    });
-});
-
-// 📍 Highlight Active Section in Navbar
+/* ================= ACTIVE NAV HIGHLIGHT ================= */
 const sections = document.querySelectorAll("section, header");
 const navLinks = document.querySelectorAll(".navbar ul li a");
 
@@ -33,53 +20,114 @@ window.addEventListener("scroll", () => {
     let current = "";
 
     sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.clientHeight;
+        const top = section.offsetTop - 120;
+        const height = section.clientHeight;
 
-        if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+        if (window.scrollY >= top && window.scrollY < top + height) {
             current = section.getAttribute("id");
         }
     });
 
     navLinks.forEach(link => {
         link.classList.remove("active");
+
         if (link.getAttribute("href") === "#" + current) {
             link.classList.add("active");
         }
     });
 });
 
-// 💫 Fade-in animation on scroll
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
-        }
-    });
-});
+/* ================= SCROLL ANIMATION (CLEAN VERSION) ================= */
+const observer = new IntersectionObserver(
+    entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    },
+    { threshold: 0.15 }
+);
 
-document.querySelectorAll(".section, .service-card, .price-card").forEach(el => {
-    el.style.opacity = "0";
-    el.style.transform = "translateY(20px)";
-    observer.observe(el);
-});
+document.querySelectorAll(".section, .service-card, .price-card, .testimonial-card")
+.forEach(el => observer.observe(el));
 
-// 🍔 Toggle Mobile Menu
+/* ================= MOBILE MENU ================= */
 const menuToggle = document.getElementById("menuToggle");
 const navMenu = document.getElementById("navMenu");
 
-menuToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
-});
+if (menuToggle && navMenu) {
+    menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
 
-// 📌 Navbar scroll effect
+        // change icon
+        menuToggle.textContent = navMenu.classList.contains("active")
+            ? "✖"
+            : "☰";
+    });
+
+    // close menu on link click
+    document.querySelectorAll(".navbar ul li a").forEach(link => {
+        link.addEventListener("click", () => {
+            navMenu.classList.remove("active");
+            menuToggle.textContent = "☰";
+        });
+    });
+}
+
+/* ================= NAVBAR SCROLL EFFECT ================= */
+let navbar = document.querySelector(".navbar");
+
+let lastScroll = 0;
+
 window.addEventListener("scroll", () => {
-    const navbar = document.querySelector(".navbar");
+    const currentScroll = window.scrollY;
 
-    if (window.scrollY > 50) {
+    if (currentScroll > 50) {
         navbar.classList.add("scrolled");
     } else {
         navbar.classList.remove("scrolled");
     }
+
+    lastScroll = currentScroll;
+});
+
+/* ================= FORM VALIDATION ================= */
+const form = document.querySelector(".contact-form");
+const popup = document.getElementById("popupMessage");
+
+function showPopup(message, color = "#25D366") {
+    popup.textContent = message;
+    popup.style.background = color;
+    popup.style.display = "block";
+
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 3000);
+}
+
+form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = form.querySelector("input[type='text']").value.trim();
+    const email = form.querySelector("input[type='email']").value.trim();
+    const message = form.querySelector("textarea").value.trim();
+
+    // Validation
+    if (!name || !email || !message) {
+        showPopup("⚠️ Please fill in all fields", "#ef4444");
+        return;
+    }
+
+    // Email format check
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        showPopup("⚠️ Enter a valid email", "#ef4444");
+        return;
+    }
+
+    // Success
+    showPopup("✅ Message sent successfully!");
+
+    form.reset();
 });
