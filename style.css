@@ -264,14 +264,39 @@ body.light-mode .testimonial {
   color: white;
 }
 
-/* ================= SECTIONS ================= */
-.section {
-  padding: 70px 15px;
-  max-width: 1100px;
-  margin: auto;
-  text-align: center;
+/* ================= ABOUT ================= */
+.about-container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  text-align: left;
 }
 
+
+/* image*/
+.about-image img{
+  width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+
+/*text*/
+.about-text{
+  max-width: 600px;
+}
+
+.about-text h2{
+  margin-bottom: 15px;
+  color: #38bdf8;
+}
+
+.about-text p{
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+/*============  ================*/
 .section h2 {
   margin-bottom: 20px;
 }
@@ -384,5 +409,14 @@ footer {
 
   .hero-buttons{
     flex-direction: column;
+  }
+
+  .about-container{
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-image img{
+    width: 200px;
   }
 }
