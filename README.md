@@ -110,15 +110,15 @@ http://localhost:3000
 -```POST/contact``` → sends email via Nodemailer
 
 ### 🧪 Testing
--Manual testing across desktop and mobile devices
--Verified responsiveness with Chrome DevTools
--Backend email tested with Gmail + Outlook accounts
+- Manual testing across desktop and mobile devices
+- Verified responsiveness with Chrome DevTools
+- Backend email tested with Gmail + Outlook accounts
 
 ### 🧪 Future Improvements
--Online booking system with calendar integration
--Admin dashboard for managing services and prices
--Role‑based access control (Admin/Staff)
--Customer accounts with booking history
+- Online booking system with calendar integration
+- Admin dashboard for managing services and prices
+- Role‑based access control (Admin/Staff)
+- Customer accounts with booking history
 
 ---
 ## 👨‍💻 Developer
