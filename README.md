@@ -84,11 +84,11 @@ git clone https://github.com/De-Bongz/FUTURE_FS_03.git
 cd the-beauty-hub
 ```
 ### 2.Install Dependencies
-``bash
+```bash
 npm install
-``
+```
 ### 3.Setup Environment Variables
-Create a ```.env `` file:
+Create a ```.env ``` file:
 ```Env
 EMAIL_USER=your-email@example.com
 EMAIL_PASS=your-email-password
