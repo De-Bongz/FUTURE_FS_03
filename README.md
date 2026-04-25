@@ -65,10 +65,10 @@ The backend is built using Node.js and Express, enabling real email delivery wit
 ---
 
 ## 📸 Screenshots
-![Hero Section](images/hero.png)
-![Services Page](images/services.png)
-![Price List](images/prices.png)
-![Booking Policy](images/booking.png)
+![Hero Section](images/Hero_section.png)
+![Services Page](images/Service_page.png)
+![Price List](images/Price_list.png)
+![Booking Policy](images/Booking_policy.png)
 
 ---
 
