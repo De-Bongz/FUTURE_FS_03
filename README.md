@@ -80,7 +80,7 @@ The backend is built using Node.js and Express, enabling real email delivery wit
 
 ### 1. Clone Project
 ```bash
-git clone https://github.com/your-username/the-beauty-hub.git
+git clone https://github.com/De-Bongz/FUTURE_FS_03.git
 cd the-beauty-hub
 ```
 ### 2.Install Dependencies
