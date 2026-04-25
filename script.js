@@ -131,6 +131,9 @@ if (form) {
             showPopup("⚠️ Please fill in all fields", "#ef4444");
             return;
         }
+        const submitBtn = form.querySelector("button");
+        submitBtn.textContent = "Sending...";
+        submitBtn.disabled = true;
 
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(email)) {
@@ -155,6 +158,8 @@ if (form) {
             } else {
                 showPopup("❌ Failed to send message", "#ef4444");
             }
+            submitBtn.textContent = "Send Message";
+            submitBtn.disabled = false;
 
         } catch (error) {
             showPopup("⚠️ Server error. Try again later.", "#ef4444");

@@ -83,6 +83,23 @@ app.post("/contact", async (req, res) => {
     }
 });
 
+await transporter.sendMail({
+    from: `"The Beauty Hub" <${process.env.EMAIL_USER}>`,
+    to: email,
+    subject: "We received your message 💌",
+    html: `
+    <div style="font-family: Arial; padding: 20px;">
+        <h2>Hello ${name},</h2>
+        <p>Thank you for contacting <strong>The Beauty Hub</strong>.</p>
+        <p>We have received your message and will get back to you shortly.</p>
+
+        <br>
+
+        <p>Kind regards,<br>The Beauty Hub Team</p>
+    </div>
+    `
+});
+
 /* ================= HEALTH CHECK ================= */
 app.get("/", (req, res) => {
     res.send("Backend is running 🚀");
