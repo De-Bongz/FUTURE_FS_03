@@ -563,22 +563,32 @@ body.light-mode .footer a:hover {
   min-width: 250px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
   gap: 10px;
 }
 
 .contact-form input,
 .contact-form textarea {
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: #020617;
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border: 1px solid #38bdf8;
+    box-shadow: 0 0 8px #38bdf8;
 }
 
 /* Button */
 .contact-form button {
   padding: 12px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   background: linear-gradient(135deg, #2563eb, #38bdf8);
   color: white;
   font-weight: bold;
@@ -587,7 +597,8 @@ body.light-mode .footer a:hover {
 }
 
 .contact-form button:hover {
-  transform: scale(1.05);
+    background: #1d4ed8;
+    transform: scale(1.03);
 }
 
 

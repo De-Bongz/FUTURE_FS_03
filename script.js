@@ -7,12 +7,28 @@ function toggleTheme() {
 
     body.classList.toggle("light-mode");
 
-    button.textContent = body.classList.contains("light-mode")
-        ? "🌙 Dark Mode"
-        : "☀️ Light Mode";
+    if (button) {
+        button.textContent = body.classList.contains("light-mode")
+            ? "🌙 Dark Mode"
+            : "☀️ Light Mode";
+    }
 }
 
-/* ================= ACTIVE NAV HIGHLIGHT ================= */
+/* ================= SMOOTH SCROLL ================= */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const target = document.querySelector(this.getAttribute("href"));
+        if (target) {
+            target.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+    });
+});
+
+/* ================= ACTIVE NAV ================= */
 const sections = document.querySelectorAll("section, header");
 const navLinks = document.querySelectorAll(".navbar ul li a");
 
@@ -37,20 +53,18 @@ window.addEventListener("scroll", () => {
     });
 });
 
-/* ================= SCROLL ANIMATION (CLEAN VERSION) ================= */
-const observer = new IntersectionObserver(
-    entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("show");
-            }
-        });
-    },
-    { threshold: 0.15 }
-);
+/* ================= SCROLL ANIMATION ================= */
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
+    });
+}, { threshold: 0.15 });
 
-document.querySelectorAll(".section, .service-card, .price-card, .testimonial-card")
-.forEach(el => observer.observe(el));
+document.querySelectorAll(
+    ".section, .service-card, .price-card, .testimonial-card"
+).forEach(el => observer.observe(el));
 
 /* ================= MOBILE MENU ================= */
 const menuToggle = document.getElementById("menuToggle");
@@ -60,13 +74,11 @@ if (menuToggle && navMenu) {
     menuToggle.addEventListener("click", () => {
         navMenu.classList.toggle("active");
 
-        // change icon
         menuToggle.textContent = navMenu.classList.contains("active")
             ? "✖"
             : "☰";
     });
 
-    // close menu on link click
     document.querySelectorAll(".navbar ul li a").forEach(link => {
         link.addEventListener("click", () => {
             navMenu.classList.remove("active");
@@ -76,27 +88,24 @@ if (menuToggle && navMenu) {
 }
 
 /* ================= NAVBAR SCROLL EFFECT ================= */
-let navbar = document.querySelector(".navbar");
-
-let lastScroll = 0;
+const navbar = document.querySelector(".navbar");
 
 window.addEventListener("scroll", () => {
-    const currentScroll = window.scrollY;
+    if (!navbar) return;
 
-    if (currentScroll > 50) {
+    if (window.scrollY > 50) {
         navbar.classList.add("scrolled");
     } else {
         navbar.classList.remove("scrolled");
     }
-
-    lastScroll = currentScroll;
 });
 
-/* ================= FORM VALIDATION ================= */
-const form = document.querySelector(".contact-form");
+/* ================= POPUP MESSAGE ================= */
 const popup = document.getElementById("popupMessage");
 
 function showPopup(message, color = "#25D366") {
+    if (!popup) return;
+
     popup.textContent = message;
     popup.style.background = color;
     popup.style.display = "block";
@@ -106,28 +115,49 @@ function showPopup(message, color = "#25D366") {
     }, 3000);
 }
 
-form.addEventListener("submit", function (e) {
-    e.preventDefault();
+/* ================= CONTACT FORM (BACKEND CONNECTED) ================= */
+const form = document.querySelector(".contact-form");
 
-    const name = form.querySelector("input[type='text']").value.trim();
-    const email = form.querySelector("input[type='email']").value.trim();
-    const message = form.querySelector("textarea").value.trim();
+if (form) {
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    // Validation
-    if (!name || !email || !message) {
-        showPopup("⚠️ Please fill in all fields", "#ef4444");
-        return;
-    }
+        const name = form.querySelector("input[type='text']").value.trim();
+        const email = form.querySelector("input[type='email']").value.trim();
+        const message = form.querySelector("textarea").value.trim();
 
-    // Email format check
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-        showPopup("⚠️ Enter a valid email", "#ef4444");
-        return;
-    }
+        // Validation
+        if (!name || !email || !message) {
+            showPopup("⚠️ Please fill in all fields", "#ef4444");
+            return;
+        }
 
-    // Success
-    showPopup("✅ Message sent successfully!");
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            showPopup("⚠️ Enter a valid email", "#ef4444");
+            return;
+        }
 
-    form.reset();
-});
+        try {
+            const response = await fetch("http://localhost:5000/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ name, email, message })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                showPopup("✅ Message sent successfully!");
+                form.reset();
+            } else {
+                showPopup("❌ Failed to send message", "#ef4444");
+            }
+
+        } catch (error) {
+            showPopup("⚠️ Server error. Try again later.", "#ef4444");
+        }
+    });
+}
