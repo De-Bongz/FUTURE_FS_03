@@ -136,13 +136,15 @@ if (form) {
         submitBtn.disabled = true;
 
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(email)) {
+       if (!emailPattern.test(email)) {
             showPopup("⚠️ Enter a valid email", "#ef4444");
+            submitBtn.textContent = "Send Message";
+            submitBtn.disabled = false;
             return;
         }
 
         try {
-            const response = await fetch("https://future-fs-03-v9h6.onrender.com", {
+            const response = await fetch("https://future-fs-03-v9h6.onrender.com/contact", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -163,6 +165,8 @@ if (form) {
 
         } catch (error) {
             showPopup("⚠️ Server error. Try again later.", "#ef4444");
+            submitBtn.textContent = "Send Message";
+            submitBtn.disabled = false;
         }
     });
 }
