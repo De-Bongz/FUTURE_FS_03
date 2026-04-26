@@ -142,7 +142,7 @@ if (form) {
         }
 
         try {
-            const response = await fetch("http://localhost:5000/contact", {
+            const response = await fetch("https://future-fs-03-v9h6.onrender.com", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
